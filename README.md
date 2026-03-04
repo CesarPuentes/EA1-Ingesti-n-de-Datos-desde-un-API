@@ -4,8 +4,6 @@ Este repositorio contiene la solución completa a la actividad **"EA1. Ingestió
 
 ## Desarrollo y Trazabilidad del Proyecto
 
-A continuación se detalla cómo se dio cumplimiento exacto a cada uno de los lineamientos solicitados en la ruta metodológica de las instrucciones de la Tarea:
-
 ### 1. Lectura de Datos desde un API
 
 **Identifica el API a utilizar y revisa su documentación para conocer los endpoints:** 
@@ -162,7 +160,7 @@ La principal virtud de este proyecto es que **no requiere ser ejecutado manualme
 
 ## Alineación Criterios de Evaluación y Rúbrica de la Tarea
 
-Esta entrega ha sido diseñada meticulosamente para dar cumplimiento perfecto a la rúbrica exigida en la plataforma. A continuación se sustenta la cobertura:
+Esta entrega ha sido realizada teniendo en cuenta la rúbrica exigida en la plataforma.
 
 | Competencia de Aprendizaje | Evidencia del Cumplimiento en el Proyecto |
 | :--- | :--- |

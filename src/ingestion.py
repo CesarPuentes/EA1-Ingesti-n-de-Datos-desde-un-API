@@ -56,6 +56,14 @@ def generate_sample():
     conn.close()
     sample_df = df.head(10)
     sample_df.to_excel(XLSX_PATH, index=False)
+    
+    # Imprimir en la consola (para que GitHub Actions lo muestre en los Logs)
+    print("\n" + "="*50)
+    print("MUESTRA REPRESENTATIVA EXTRAÍDA DE SQLITE (Pandas DF):")
+    print("="*50)
+    print(sample_df.to_string(index=False))
+    print("="*50 + "\n")
+    
     return df
 
 def generate_audit(api_data, db_df):
