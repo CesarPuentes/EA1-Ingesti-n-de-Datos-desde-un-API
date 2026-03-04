@@ -55,17 +55,44 @@ def save_to_db(data):
 def generate_sample():
     print(f"[{datetime.now()}] Generando muestra XLSX: {XLSX_PATH}")
     conn = sqlite3.connect(DB_PATH)
-    df = pd.read_sql_query("SELECT * FROM users", conn)
+    cursor = conn.cursor()
+
+    # --- Consulta SQL 1: Estructura de la tabla ---
+    query_schema = "PRAGMA table_info(users)"
+    print("\n" + "="*60)
+    print(f"CONSULTA SQL: {query_schema}")
+    print("="*60)
+    cursor.execute(query_schema)
+    columns = cursor.fetchall()
+    print(f"{'ID':<5} {'Columna':<15} {'Tipo':<10} {'Not Null':<10} {'PK':<5}")
+    print("-"*45)
+    for col in columns:
+        print(f"{col[0]:<5} {col[1]:<15} {col[2]:<10} {'Sí' if col[3] else 'No':<10} {'Sí' if col[5] else 'No':<5}")
+    print("="*60 + "\n")
+
+    # --- Consulta SQL 2: Conteo total de registros ---
+    query_count = "SELECT COUNT(*) AS total_registros FROM users"
+    print("="*60)
+    print(f"CONSULTA SQL: {query_count}")
+    print("="*60)
+    cursor.execute(query_count)
+    count = cursor.fetchone()[0]
+    print(f"Resultado: {count} registros almacenados en la tabla 'users'")
+    print("="*60 + "\n")
+
+    # --- Consulta SQL 3: Selección de todos los registros ---
+    query_select = "SELECT * FROM users"
+    print("="*60)
+    print(f"CONSULTA SQL: {query_select}")
+    print("="*60)
+    df = pd.read_sql_query(query_select, conn)
     conn.close()
     sample_df = df.head(10)
     sample_df.to_excel(XLSX_PATH, index=False)
-    
-    # Imprimir en la consola (para que GitHub Actions lo muestre en los Logs)
-    print("\n" + "="*50)
-    print("MUESTRA REPRESENTATIVA EXTRAÍDA DE SQLITE (Pandas DF):")
-    print("="*50)
+    print("Resultado (muestra representativa cargada a Pandas DataFrame):")
+    print("-"*60)
     print(sample_df.to_string(index=False))
-    print("="*50 + "\n")
+    print("="*60 + "\n")
     
     return df
 
