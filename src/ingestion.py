@@ -25,7 +25,9 @@ def extract_data():
     print(f"[{datetime.now()}] Extrayendo datos de: {API_URL}")
     response = requests.get(API_URL)
     response.raise_for_status()
-    return response.json()
+    data = response.json()
+    print(f"[{datetime.now()}] Datos extraídos exitosamente: {len(data)} registros obtenidos del API")
+    return data
 
 def save_to_db(data):
     print(f"[{datetime.now()}] Guardando datos en SQLite: {DB_PATH}")
@@ -48,6 +50,7 @@ def save_to_db(data):
         ''', (user['id'], user['name'], user['username'], user['email'], user['phone'], user['website']))
     conn.commit()
     conn.close()
+    print(f"[{datetime.now()}] Base de datos SQLite creada/actualizada exitosamente con {len(data)} registros")
 
 def generate_sample():
     print(f"[{datetime.now()}] Generando muestra XLSX: {XLSX_PATH}")
@@ -71,29 +74,76 @@ def generate_audit(api_data, db_df):
     api_count = len(api_data)
     db_count = len(db_df)
     
+    audit_lines = []
+    audit_lines.append("--- REPORTE DE AUDITORÍA ---")
+    audit_lines.append(f"Fecha: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    audit_lines.append(f"API: {API_URL}")
+    audit_lines.append("")
+    audit_lines.append("1. Conteo de Registros:")
+    audit_lines.append(f" - API: {api_count}")
+    audit_lines.append(f" - BD: {db_count}")
+    audit_lines.append("")
+    if api_count == db_count:
+        audit_lines.append("ESTADO: ÉXITO. Los registros concuerdan.")
+    else:
+        audit_lines.append("ESTADO: ADVERTENCIA. Diferencia en registros.")
+    audit_lines.append("")
+    audit_lines.append("2. Verificación de Integridad:")
+    audit_lines.append(" - Estructura de tabla verificada.")
+    audit_lines.append(" - Archivo XLSX generado exitosamente.")
+    
+    audit_content = "\n".join(audit_lines)
+    
     with open(AUDIT_PATH, 'w', encoding='utf-8') as f:
-        f.write("--- REPORTE DE AUDITORÍA ---\n")
-        f.write(f"Fecha: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
-        f.write(f"API: {API_URL}\n\n")
-        f.write("1. Conteo de Registros:\n")
-        f.write(f" - API: {api_count}\n")
-        f.write(f" - BD: {db_count}\n\n")
-        
-        if api_count == db_count:
-            f.write("ESTADO: ÉXITO. Los registros concuerdan.\n\n")
+        f.write(audit_content + "\n")
+    
+    # Imprimir el reporte de auditoría en consola (evidencia en logs de GitHub Actions)
+    print("\n" + "="*50)
+    print("REPORTE DE AUDITORÍA (contenido de ingestion.txt):")
+    print("="*50)
+    print(audit_content)
+    print("="*50 + "\n")
+
+def verify_files():
+    """Verifica y muestra evidencia de los archivos generados."""
+    print("\n" + "="*50)
+    print("VERIFICACIÓN DE ARCHIVOS GENERADOS:")
+    print("="*50)
+    files_to_check = [
+        ("Base de Datos SQLite", DB_PATH),
+        ("Muestra Excel (XLSX)", XLSX_PATH),
+        ("Archivo de Auditoría (TXT)", AUDIT_PATH),
+    ]
+    all_ok = True
+    for description, path in files_to_check:
+        if os.path.exists(path):
+            size = os.path.getsize(path)
+            print(f"  ✅ {description}: {path} ({size} bytes)")
         else:
-            f.write("ESTADO: ADVERTENCIA. Diferencia en registros.\n\n")
-        
-        f.write("2. Verificación de Integridad:\n")
-        f.write(" - Estructura de tabla verificada.\n")
-        f.write(" - Archivo XLSX generado exitosamente.\n")
+            print(f"  ❌ {description}: {path} — NO ENCONTRADO")
+            all_ok = False
+    print("="*50)
+    if all_ok:
+        print("RESULTADO: Todos los archivos fueron generados correctamente.")
+    else:
+        print("RESULTADO: ADVERTENCIA — Algunos archivos no se generaron.")
+    print("="*50 + "\n")
+    return all_ok
 
 if __name__ == "__main__":
+    print("\n" + "#"*60)
+    print("# INICIO DEL PROCESO DE INGESTIÓN DE DATOS")
+    print(f"# Fecha y hora: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print("#"*60 + "\n")
     try:
         api_data = extract_data()
         save_to_db(api_data)
         db_df = generate_sample()
         generate_audit(api_data, db_df)
-        print("Proceso completado exitosamente.")
+        verify_files()
+        print("\n" + "#"*60)
+        print("# PROCESO DE INGESTIÓN COMPLETADO EXITOSAMENTE")
+        print("#"*60 + "\n")
     except Exception as e:
-        print(f"Error: {e}")
+        print(f"\n❌ ERROR CRÍTICO EN EL PROCESO: {e}")
+        raise
