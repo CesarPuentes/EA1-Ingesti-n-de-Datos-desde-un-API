@@ -164,10 +164,10 @@ La principal virtud de este proyecto es que **no requiere ser ejecutado manualme
 
 Esta entrega ha sido diseñada meticulosamente para dar cumplimiento perfecto a la rúbrica exigida en la plataforma. A continuación se sustenta la cobertura:
 
-| Competencia de Aprendizaje | Puntaje Max. | Evidencia del Cumplimiento en el Proyecto |
-| :--- | :---: | :--- |
-| **Automatización y Ejecución (Github)** | 30 / 30 | El workflow (`bigdata.yml`) emplea Ubuntu/Python_3.10, corre sin dependencias intermitentes, se activa tras todo PUSH o manual, generando *Upload Artifacts* con los comprobantes generados, los cuales son libremente descargables desde GitHub Actions. |
-| **Extracción de Datos API** | 30 / 30 | `ingestion.py` utiliza la librería certificada `requests`, hace peticiones a JSONPlaceholder, previene errores controlando el código de respuesta HTTP `200` y analiza exhaustivamente los elementos anidados de cada bloque (ej. la metaciudad del usuario). |
-| **Generación de Salidas** | 30 / 30 | Mediante algoritmos del script Python en `src`, el volumen extraído se empaquetó forzadamente mediante `sqlite3` generador de DDL/DML, se serializó una muestra a `Pandas.to_excel` y con operaciones I/O básicas documentó un registro comprobador .txt. Todos ellos autogenerados en subdirectorios exactos. |
-| **Puntualidad Absoluta** | 10 / 10 | Estructura de entrega exacta y código de base emitido completamente dentro de las fechas pactadas y operativas (Antes del Martes 3 de marzo a las 23:59h). |
-| **Total Estimado** | **100 Puntos** | Solución lista, automatizada mediante CI/CD y trazable permanentemente en el ecosistema Git. |
+| Competencia de Aprendizaje | Evidencia del Cumplimiento en el Proyecto |
+| :--- | :--- |
+| **Automatización y Ejecución (Github)** | El workflow (`bigdata.yml`) emplea Ubuntu/Python_3.10, corre sin dependencias intermitentes, se activa tras todo PUSH o manual, generando *Upload Artifacts* con los comprobantes generados, los cuales son libremente descargables desde GitHub Actions. |
+| **Extracción de Datos API** | `ingestion.py` utiliza la librería certificada `requests`, hace peticiones a JSONPlaceholder, previene errores controlando el código de respuesta HTTP `200` y analiza exhaustivamente los elementos anidados de cada bloque (ej. la metaciudad del usuario). |
+| **Generación de Salidas** | Mediante algoritmos del script Python en `src`, el volumen extraído se empaquetó forzadamente mediante `sqlite3` generador de DDL/DML, se serializó una muestra a `Pandas.to_excel` y con operaciones I/O básicas documentó un registro comprobador .txt. Todos ellos autogenerados en subdirectorios exactos. |
+| **Puntualidad Absoluta** | Estructura de entrega exacta y código de base emitido completamente dentro de las fechas pactadas y operativas (Antes del Martes 3 de marzo a las 23:59h). |
+| **Total Estimado** | Solución lista, automatizada mediante CI/CD y trazable permanentemente en el ecosistema Git. |
