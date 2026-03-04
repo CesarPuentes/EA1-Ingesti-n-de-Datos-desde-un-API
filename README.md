@@ -22,6 +22,8 @@ def extract_data():
     return response.json()
 ```
 
+![git1](git1.png)
+
 ### 2. Almacenamiento en SQLite
 
 **Utiliza el módulo de base de datos (`sqlite3`) para crear una base analítica:**
@@ -55,6 +57,8 @@ def save_to_db(data):
     conn.close()
 ```
 
+![git2](git2.png)
+
 ### 3. Generación de Evidencias Complementarias
 
 **Archivo de Muestra con Pandas (Excel/CSV):**
@@ -73,6 +77,8 @@ def generate_sample():
     sample_df.to_excel(XLSX_PATH, index=False)
     return df
 ```
+
+![git3](git3.png)
 
 **Archivo de Auditoría (.txt):**
 Un archivo físico llamado `src/static/auditoria/ingestion.txt` se escribe al final de la ejecución, calculando simetrías y realizando conteos precisos para confirmar la fiabilidad de la ingesta (comparando Registros de Origen vs Registros Destino). 
