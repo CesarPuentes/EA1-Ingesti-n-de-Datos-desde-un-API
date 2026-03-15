@@ -60,6 +60,22 @@ def exploratory_analysis(df):
     return stats
 ```
 
+**Resultados de la última ejecución:**
+<!-- LOG_EXPLORE_START -->
+```text
+Nulos por col:
+id          0
+name        0
+username    0
+email       0
+phone       0
+website     0
+
+Duplicados detectados: 0
+Emails no normalizados (con mayúsculas): 10
+```
+<!-- LOG_EXPLORE_END -->
+
 ---
 
 ### 3. Limpieza y Transformación de Datos
@@ -92,6 +108,15 @@ def clean_data(df, stats):
     df_clean['phone'] = df_clean['phone'].str.replace(r'[^\d\s\-\+\(\)\.x]', '', regex=True)
     return df_clean, operaciones
 ```
+
+**Registro de limpieza:**
+<!-- LOG_CLEAN_START -->
+```text
+[LIMPIEZA] Duplicados eliminados: 0
+[LIMPIEZA] Tipos corregidos: id→int, textos→str
+[LIMPIEZA] Emails y websites → minúsculas, strip; teléfonos → estandarizados
+```
+<!-- LOG_CLEAN_END -->
 
 ---
 
