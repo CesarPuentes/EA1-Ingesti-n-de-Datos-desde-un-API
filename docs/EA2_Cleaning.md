@@ -125,6 +125,8 @@ def clean_data(df, stats):
 **Datos limpios (`src/xlsx/cleaned_data.xlsx`):**  
 El DataFrame limpio completo se exporta a Excel, permitiendo su revisión directa por parte del instructor.
 
+Link: https://github.com/CesarPuentes/EA1-Ingesti-n-de-Datos-desde-un-API/blob/main/src/xlsx/cleaned_data.xlsx
+
 **Reporte de auditoría (`src/static/auditoria/cleaning_report.txt`):**  
 Documento estructurado que incluye:
 - Registros **antes** y **después** de la limpieza.
@@ -132,6 +134,8 @@ Documento estructurado que incluye:
 - Lista numerada de cada operación de limpieza realizada.
 - Tipos de datos finales de cada columna.
 - Estado de integridad verificado.
+
+Link: https://github.com/CesarPuentes/EA1-Ingesti-n-de-Datos-desde-un-API/blob/main/src/static/auditoria/cleaning_report.txt
 
 ```python
 # ---- EA2 Paso 4b: Generación del Reporte de Auditoría ----
