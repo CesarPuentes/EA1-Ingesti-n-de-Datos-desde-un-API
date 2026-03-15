@@ -1,0 +1,23 @@
+EA2 – REPORTE DE AUDITORÍA DE LIMPIEZA
+Fecha: 2026-03-15 15:35:33
+──────────────────────────────────────────────────
+Registros antes : 10
+Registros después: 10
+Eliminados       : 0
+──────────────────────────────────────────────────
+Diagnóstico inicial:
+  Duplicados: 0
+  Emails no normalizados: 10
+  Nulos 'id': 0
+  Nulos 'name': 0
+  Nulos 'username': 0
+  Nulos 'email': 0
+  Nulos 'phone': 0
+  Nulos 'website': 0
+──────────────────────────────────────────────────
+Operaciones realizadas:
+  1. Duplicados eliminados: 0
+  2. Tipos corregidos: id→int, textos→str
+  3. Emails y websites → minúsculas, strip; teléfonos → estandarizados
+──────────────────────────────────────────────────
+Estado: LIMPIEZA COMPLETADA CON ÉXITO ✅

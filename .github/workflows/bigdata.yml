@@ -1,4 +1,4 @@
-name: Ingestión de Datos
+name: Ingestión y Preprocesamiento de Datos
 
 on:
   push:
@@ -27,11 +27,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests pandas openpyxl
 
-      - name: Ejecutar script de ingesta
+      # ---- EA1: Ejecución del script de ingesta ----
+      - name: Ejecutar script de ingesta (EA1)
         run: |
           python src/ingestion.py
 
-      - name: Subir artefactos generados (Base de Datos, Muestra y Auditoría)
+      - name: Subir artefactos EA1 (Base de Datos, Muestra y Auditoría)
         uses: actions/upload-artifact@v4
         with:
           name: evidencias-ingestion
@@ -39,3 +40,16 @@ jobs:
             src/db/ingestion.db
             src/xlsx/ingestion.xlsx
             src/static/auditoria/ingestion.txt
+
+      # ---- EA2: Ejecución del script de preprocesamiento y limpieza ----
+      - name: Ejecutar script de limpieza (EA2)
+        run: |
+          python src/cleaning.py
+
+      - name: Subir artefactos EA2 (Datos Limpios y Auditoría de Limpieza)
+        uses: actions/upload-artifact@v4
+        with:
+          name: evidencias-cleaning
+          path: |
+            src/xlsx/cleaned_data.xlsx
+            src/static/auditoria/cleaning_report.txt
