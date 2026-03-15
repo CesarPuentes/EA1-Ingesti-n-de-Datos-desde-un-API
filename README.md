@@ -22,10 +22,7 @@ flowchart TD
         H --> J[Reporte de auditoría\ncleaning_report.txt]
     end
 
-    subgraph GH["GitHub Actions — bigdata.yml"]
-        direction LR
-        K([push / cron]) --> L[Ejecuta EA1] --> M[Ejecuta EA2] --> N[📦 Artefactos descargables]
-    end
+
 ```
 
 
