@@ -45,6 +45,10 @@ jobs:
       - name: Ejecutar script de limpieza (EA2)
         run: |
           python src/cleaning.py
+          echo "### 📊 Reporte de Auditoría EA2" >> $GITHUB_STEP_SUMMARY
+          echo '```text' >> $GITHUB_STEP_SUMMARY
+          cat src/static/auditoria/cleaning_report.txt >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
 
       - name: Subir artefactos EA2 (Datos Limpios y Auditoría de Limpieza)
         uses: actions/upload-artifact@v4

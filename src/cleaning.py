@@ -100,11 +100,21 @@ def report(original, cleaned, stats, ops):
 if __name__ == '__main__':
     print(f"\n>>> EA2 INICIO: {datetime.now()}")
     try:
+        print("::group::[EA2] Carga de Datos y Análisis Exploratorio")
         raw          = load_data()
         stats        = explore(raw)
+        print("::endgroup::")
+        
+        print("::group::[EA2] Limpieza y Transformación")
         cleaned, ops = clean(raw)
+        print("::endgroup::")
+        
+        print("::group::[EA2] Exportación y Reporte")
         export(cleaned)
         report(raw, cleaned, stats, ops)
+        print(f"::notice title=Resultados EA2::Limpieza completada verificada. {len(cleaned)} registros.")
+        print("::endgroup::")
+        
         print(f">>> EA2 FIN: {datetime.now()}\n")
     except Exception as e:
         print(f"\n❌ EA2 ERROR: {e}"); raise
