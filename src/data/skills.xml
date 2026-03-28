@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<skills>
+  <user><id>1</id><primary_skill>React</primary_skill><level>Senior</level></user>
+  <user><id>2</id><primary_skill>Python</primary_skill><level>Senior</level></user>
+  <user><id>3</id><primary_skill>Copywriting</primary_skill><level>Mid</level></user>
+  <user><id>4</id><primary_skill>Negotiation</primary_skill><level>Senior</level></user>
+  <user><id>5</id><primary_skill>Talent Acquisition</primary_skill><level>Mid</level></user>
+  <user><id>6</id><primary_skill>Financial Modeling</primary_skill><level>Senior</level></user>
+  <user><id>7</id><primary_skill>Kubernetes</primary_skill><level>Mid</level></user>
+  <user><id>8</id><primary_skill>Google Analytics</primary_skill><level>Junior</level></user>
+  <user><id>9</id><primary_skill>CRM Management</primary_skill><level>Senior</level></user>
+  <user><id>10</id><primary_skill>Leadership</primary_skill><level>Senior</level></user>
+</skills>

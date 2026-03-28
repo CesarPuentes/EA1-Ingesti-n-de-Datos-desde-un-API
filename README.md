@@ -1,4 +1,4 @@
-# Proyecto Integrador Big Data – EA1 + EA2
+# Proyecto Integrador Big Data – EA1 + EA2 + EA3
 
 Repositorio del proyecto integrador de **Infraestructura y Arquitectura para Big Data**.
 
@@ -22,10 +22,14 @@ flowchart TD
         H --> J[Reporte de auditoría\ncleaning_report.txt]
     end
 
-
+    subgraph EA3["EA3 — enrichement.py"]
+        I --> K[Carga dataset limpio]
+        K --> L[Lectura de 6 fuentes\nJSON · XLSX · CSV · XML · HTML · TXT]
+        L --> M[Cruce e integración\nleft join por id]
+        M --> N[Dataset enriquecido\nenriched_data.xlsx]
+        M --> O[Reporte de auditoría\nenriched_report.txt]
+    end
 ```
-
-
 
 ## Actividades
 
@@ -33,6 +37,7 @@ flowchart TD
 |:--|:--|:--|:--|
 | **EA1** | Ingestión de Datos desde un API | `src/ingestion.py` | [📄 EA1\_Ingestion.md](docs/EA1_Ingestion.md) |
 | **EA2** | Preprocesamiento y Limpieza de Datos | `src/cleaning.py` | [📄 EA2\_Cleaning.md](docs/EA2_Cleaning.md) |
+| **EA3** | Enriquecimiento de Datos | `src/enrichement.py` | [📄 EA3\_Enrichment.md](docs/EA3_Enrichment.md) |
 
 ---
 
@@ -44,11 +49,11 @@ API (JSONPlaceholder /users)
   SQLite DB  →  ingestion.xlsx  →  ingestion.txt
        ↓  EA2 — cleaning.py
  DataFrame limpio  →  cleaned_data.xlsx  →  cleaning_report.txt
+       ↓  EA3 — enrichement.py
+ 6 fuentes (JSON, XLSX, CSV, XML, HTML, TXT)
+       ↓  merge (left join por id)
+ Dataset enriquecido  →  enriched_data.xlsx  →  enriched_report.txt
 ```
-
-![git1](git1.png)
-![git2](git2.png)
-![git3](git3.png)
 
 ---
 
@@ -56,24 +61,28 @@ API (JSONPlaceholder /users)
 
 ```bash
 # Instalar dependencias
-pip install requests pandas openpyxl
+pip install requests pandas openpyxl lxml
 
 # EA1: Ingesta de datos
 python src/ingestion.py
 
 # EA2: Preprocesamiento y limpieza
 python src/cleaning.py
+
+# EA3: Enriquecimiento de datos
+python src/enrichement.py
 ```
 
 ---
 
 ## GitHub Actions
 
-El workflow `.github/workflows/bigdata.yml` ejecuta ambas etapas automáticamente en cada `push` a `main`, por cron diario y manualmente desde la interfaz de GitHub.
+El workflow `.github/workflows/bigdata.yml` ejecuta las tres etapas automáticamente en cada `push` a `main`, por cron diario y manualmente desde la interfaz de GitHub.
 
 Los artefactos son descargables desde **Actions → [ejecución reciente] → Artifacts**:
 - **`evidencias-ingestion`** — `ingestion.db`, `ingestion.xlsx`, `ingestion.txt`
 - **`evidencias-cleaning`** — `cleaned_data.xlsx`, `cleaning_report.txt`
+- **`evidencias-enrichment`** — `enriched_data.xlsx`, `enriched_report.txt`
 
 ---
 
@@ -83,17 +92,28 @@ Los artefactos son descargables desde **Actions → [ejecución reciente] → Ar
 ├── README.md
 ├── docs/
 │   ├── EA1_Ingestion.md
-│   └── EA2_Cleaning.md
+│   ├── EA2_Cleaning.md
+│   └── EA3_Enrichment.md
 ├── .github/workflows/bigdata.yml
 ├── setup.py
 └── src/
     ├── ingestion.py
     ├── cleaning.py
+    ├── enrichement.py
+    ├── data/
+    │   ├── departments.json
+    │   ├── salaries.xlsx
+    │   ├── locations.csv
+    │   ├── skills.xml
+    │   ├── projects.html
+    │   └── notes.txt
     ├── db/ingestion.db
     ├── xlsx/
     │   ├── ingestion.xlsx
-    │   └── cleaned_data.xlsx
+    │   ├── cleaned_data.xlsx
+    │   └── enriched_data.xlsx
     └── static/auditoria/
         ├── ingestion.txt
-        └── cleaning_report.txt
+        ├── cleaning_report.txt
+        └── enriched_report.txt
 ```

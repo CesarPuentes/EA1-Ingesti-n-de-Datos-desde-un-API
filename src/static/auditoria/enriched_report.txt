@@ -1,0 +1,22 @@
+EA3 – REPORTE DE AUDITORÍA DE ENRIQUECIMIENTO
+Fecha: 2026-03-28 11:15:52
+───────────────────────────────────────────────────────
+Registros dataset base : 10
+Registros enriquecido  : 10
+Columnas originales    : ['id', 'name', 'username', 'email', 'phone', 'website']
+Columnas finales       : ['id', 'name', 'username', 'email', 'phone', 'website', 'department', 'role', 'salary', 'currency', 'city', 'country', 'primary_skill', 'level', 'project', 'hours', 'notes']
+Columnas añadidas      : ['department', 'role', 'salary', 'currency', 'city', 'country', 'primary_skill', 'level', 'project', 'hours', 'notes']
+───────────────────────────────────────────────────────
+Detalle por fuente:
+  1. Fuente 'departments' (JSON): 10 registros leídos, 10/10 coincidencias, columnas añadidas: ['department', 'role']
+  2. Fuente 'salaries' (XLSX): 10 registros leídos, 10/10 coincidencias, columnas añadidas: ['salary', 'currency']
+  3. Fuente 'locations' (CSV): 10 registros leídos, 10/10 coincidencias, columnas añadidas: ['city', 'country']
+  4. Fuente 'skills' (XML): 10 registros leídos, 10/10 coincidencias, columnas añadidas: ['primary_skill', 'level']
+  5. Fuente 'projects' (HTML): 10 registros leídos, 10/10 coincidencias, columnas añadidas: ['project', 'hours']
+  6. Fuente 'notes' (TXT): 10 registros leídos, 10/10 coincidencias, columnas añadidas: ['notes']
+───────────────────────────────────────────────────────
+Formatos integrados    : JSON, XLSX, CSV, XML, HTML, TXT
+Clave de cruce         : id
+Tipo de join           : LEFT JOIN
+───────────────────────────────────────────────────────
+Estado: ENRIQUECIMIENTO COMPLETADO CON ÉXITO ✅

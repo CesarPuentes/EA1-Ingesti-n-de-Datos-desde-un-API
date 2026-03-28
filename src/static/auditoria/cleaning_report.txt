@@ -1,5 +1,5 @@
 EA2 – REPORTE DE AUDITORÍA DE LIMPIEZA
-Fecha: 2026-03-15 16:33:14
+Fecha: 2026-03-28 11:11:21
 ──────────────────────────────────────────────────
 Registros antes : 10
 Registros después: 10

@@ -1,0 +1,12 @@
+[
+  {"id": 1,  "department": "Engineering",  "role": "Frontend Developer"},
+  {"id": 2,  "department": "Engineering",  "role": "Backend Developer"},
+  {"id": 3,  "department": "Marketing",    "role": "Content Strategist"},
+  {"id": 4,  "department": "Sales",        "role": "Account Executive"},
+  {"id": 5,  "department": "HR",           "role": "Recruiter"},
+  {"id": 6,  "department": "Finance",      "role": "Financial Analyst"},
+  {"id": 7,  "department": "Engineering",  "role": "DevOps Engineer"},
+  {"id": 8,  "department": "Marketing",    "role": "SEO Specialist"},
+  {"id": 9,  "department": "Sales",        "role": "Sales Manager"},
+  {"id": 10, "department": "HR",           "role": "HR Director"}
+]

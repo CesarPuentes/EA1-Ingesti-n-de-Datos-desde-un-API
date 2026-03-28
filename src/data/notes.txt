@@ -1,0 +1,11 @@
+id|notes
+1|Top performer in Q4 review
+2|Mentors junior developers
+3|Led successful product launch
+4|Exceeded sales quota by 20%
+5|Implemented new hiring pipeline
+6|Streamlined monthly reporting
+7|Reduced deployment time by 40%
+8|Improved organic traffic 30%
+9|Closed largest enterprise deal
+10|Drafted new remote work policy
